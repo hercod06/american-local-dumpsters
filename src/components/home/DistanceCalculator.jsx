@@ -218,7 +218,7 @@ export default function DistanceCalculator() {
                     className="flex items-start gap-2 px-4 py-2.5 cursor-pointer hover:bg-secondary transition-colors border-b border-border last:border-b-0"
                   >
                     <MapPin className="w-3.5 h-3.5 text-accent flex-shrink-0 mt-0.5" />
-                    <span className="font-body text-xs text-foreground leading-snug">{s}</span>
+                    <span className="font-body text-xs text-foreground leading-snug">{s.label}</span>
                   </li>
                 ))}
               </motion.ul>
