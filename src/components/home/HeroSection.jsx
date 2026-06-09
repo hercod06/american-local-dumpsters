@@ -18,9 +18,9 @@ const sizes = ['10 YD', '13 YD', '15 YD', '18 YD'];
 const durations = ['1 Day', '3 Days', '7 Days'];
 
 const stats = [
-  { num: 'IN', label: 'Jobs Completed' },
-  { num: 'KY', label: 'On-Time Rate' },
-  { num: 'OH', label: 'Avg. Rating' },
+  { num: 'IN', label: 'Indianapolis' },
+  { num: 'KY', label: 'Burlington' },
+  { num: 'OH', label: 'Cincinnati' },
 ];
 
 const container = {
