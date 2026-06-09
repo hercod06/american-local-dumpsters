@@ -49,24 +49,40 @@ export default function About() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-16 bg-background">
+      <section className="pt-32 pb-16 bg-background overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl"
-          >
-            <span className="font-body text-xs font-semibold tracking-widest text-accent">ABOUT US</span>
-            <h1 className="font-heading text-5xl sm:text-6xl text-foreground mt-3 tracking-tight leading-[0.95]">
-              YOUR LOCAL<br />WASTE PARTNER
-            </h1>
-            <p className="font-body text-lg text-muted-foreground mt-6 leading-relaxed">
-              American Local Dumpsters is a locally owned dumpster rental and junk removal company
-              serving the Kentucky, Ohio, and Indiana tri-state area. We make clearing your space
-              simple, fast, and affordable — whether it's a single-room cleanout or a full
-              construction project.
-            </p>
-          </motion.div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            {/* Left — text */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              <span className="font-body text-xs font-semibold tracking-widest text-accent">ABOUT US</span>
+              <h1 className="font-heading text-5xl sm:text-6xl text-foreground mt-3 tracking-tight leading-[0.95]">
+                YOUR LOCAL<br />WASTE PARTNER
+              </h1>
+              <p className="font-body text-lg text-muted-foreground mt-6 leading-relaxed">
+                American Local Dumpsters is a locally owned dumpster rental and junk removal company
+                serving the Kentucky, Ohio, and Indiana tri-state area. We make clearing your space
+                simple, fast, and affordable — whether it's a single-room cleanout or a full
+                construction project.
+              </p>
+            </motion.div>
+
+            {/* Right — company logo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="flex justify-center lg:justify-end"
+            >
+              <img
+                src="/images/AmericanLocalDumpsterOficialLogo.svg"
+                alt="American Local Dumpsters logo"
+                className="w-full max-w-sm h-auto"
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 
