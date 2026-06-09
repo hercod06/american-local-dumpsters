@@ -110,8 +110,8 @@ export default function HeroSection2() {
             variants={fadeUp}
             className="font-body text-base sm:text-lg text-primary-foreground/85 leading-relaxed mt-7 max-w-xl"
           >
-            Same-day roll-off dumpsters across Kentucky, Ohio &amp; Indiana. Flat-rate, transparent
-            pricing — no hidden fees, no surprises. Just space, cleared.
+            Same day dumpsters across Kentucky, Ohio &amp; Indiana. Flat rate, transparent
+            pricing with no hidden fees, no surprises. Just space, cleared.
           </motion.p>
 
           {/* CTAs */}
