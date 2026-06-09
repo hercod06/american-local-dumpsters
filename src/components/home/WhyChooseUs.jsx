@@ -78,7 +78,7 @@ export default function WhyChooseUs() {
                   <h3 className="font-heading text-base text-foreground">{f.title}</h3>
                   <p className="font-body text-sm text-muted-foreground mt-1 leading-relaxed">{f.desc}</p>
                 </div>
-                <ArrowRight className="w-4 h-4 text-border group-hover:text-accent transition-colors flex-shrink-0 mt-1" />
+                <ArrowRight className="w-4 h-4 text-border group-hover:text-accent transition-colors flex-shrink-0 mt-1" opacity={0} />
               </motion.div>
             ))}
           </div>

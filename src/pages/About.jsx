@@ -6,10 +6,8 @@ import { motion } from 'framer-motion';
 import CTABanner from '../components/home/CTABanner';
 
 const stats = [
-  { value: '10+', label: 'Years Serving the Tri-State' },
-  { value: '5,000+', label: 'Loads Hauled' },
-  { value: '50mi', label: 'Service Radius' },
-  { value: '1hr', label: 'Avg. Quote Response' },
+  { value: '50mi', label: 'Service Radius', icon: MapPin },
+  { value: '1hr', label: 'Avg. Quote Response', icon: Clock },
 ];
 
 const values = [
@@ -87,20 +85,29 @@ export default function About() {
       </section>
 
       {/* Stats */}
-      <section className="py-12 bg-primary">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      <section className="py-16 sm:py-20 bg-primary overflow-hidden">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 sm:gap-0 sm:divide-x sm:divide-primary-foreground/15">
             {stats.map((s, i) => (
               <motion.div
                 key={s.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="text-center"
+                initial={{ opacity: 0, y: 36, scale: 0.92 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.65, delay: i * 0.18, ease: [0.22, 1, 0.36, 1] }}
+                className="flex flex-col items-center text-center px-6 sm:px-10"
               >
-                <p className="font-heading text-4xl sm:text-5xl font-bold text-accent">{s.value}</p>
-                <p className="font-body text-sm text-primary-foreground/80 mt-2 uppercase tracking-wider">{s.label}</p>
+                <motion.div
+                  initial={{ scale: 0, rotate: -20 }}
+                  whileInView={{ scale: 1, rotate: 0 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ type: 'spring', stiffness: 200, damping: 14, delay: i * 0.18 + 0.15 }}
+                  className="w-16 h-16 rounded-full bg-accent/15 flex items-center justify-center mb-5"
+                >
+                  <s.icon className="w-8 h-8 text-accent" />
+                </motion.div>
+                <p className="font-heading text-6xl sm:text-7xl font-bold text-accent leading-none">{s.value}</p>
+                <p className="font-body text-sm text-primary-foreground/80 mt-4 uppercase tracking-[0.25em]">{s.label}</p>
               </motion.div>
             ))}
           </div>
