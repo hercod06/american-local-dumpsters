@@ -27,6 +27,14 @@ export default function DistanceCalculator() {
   const [error, setError] = useState('');
   const debounceRef = useRef(null);
   const wrapperRef = useRef(null);
+  const originCoordRef = useRef(null); // cached geocode of ORIGIN
+  const destCoordRef = useRef(null);   // coords of the selected suggestion
+
+  // Pre-geocode the origin once on mount (plenty of time, avoids rate limits)
+  useEffect(() => {
+    geocode(ORIGIN).then((c) => { if (c) originCoordRef.current = c; });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Persist address to sessionStorage so Contact page can pre-fill it
   const persistAddress = (val) => {
@@ -53,7 +61,14 @@ export default function DistanceCalculator() {
     const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&addressdetails=1&limit=5&countrycodes=us`;
     const res = await fetch(url, { headers: { 'Accept-Language': 'en' } });
     const data = await res.json();
-    setSuggestions(data.map(item => item.display_name));
+    // Keep coordinates from each suggestion so we don't have to geocode again.
+    setSuggestions(
+      data.map((item) => ({
+        label: item.display_name,
+        lat: parseFloat(item.lat),
+        lon: parseFloat(item.lon),
+      }))
+    );
     setLoadingSuggestions(false);
     setShowSuggestions(true);
   };
@@ -62,6 +77,7 @@ export default function DistanceCalculator() {
     const val = e.target.value;
     setAddress(val);
     persistAddress(val);
+    destCoordRef.current = null; // typing invalidates a previously picked address
     setResult(null);
     setError('');
     clearTimeout(debounceRef.current);
@@ -69,8 +85,9 @@ export default function DistanceCalculator() {
   };
 
   const selectSuggestion = (s) => {
-    setAddress(s);
-    persistAddress(s);
+    setAddress(s.label);
+    persistAddress(s.label);
+    destCoordRef.current = { lat: s.lat, lon: s.lon };
     setSuggestions([]);
     setShowSuggestions(false);
   };
@@ -105,7 +122,19 @@ export default function DistanceCalculator() {
     setResult(null);
 
     try {
-      const [from, to] = await Promise.all([geocode(ORIGIN), geocode(address)]);
+      // Origin: use cached coords, otherwise geocode once and cache.
+      let from = originCoordRef.current;
+      if (!from) {
+        from = await geocode(ORIGIN);
+        if (from) originCoordRef.current = from;
+      }
+
+      // Destination: reuse coords from the selected suggestion if available,
+      // otherwise geocode the typed text (sequential — avoids rate limiting).
+      let to = destCoordRef.current;
+      if (!to) {
+        to = await geocode(address);
+      }
 
       if (!to || !from) {
         setLoading(false);
