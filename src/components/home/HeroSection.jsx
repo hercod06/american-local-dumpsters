@@ -81,9 +81,9 @@ that pace
             style={{ height: 'clamp(280px, 45vw, 560px)' }}>
             
             <img
-              src="https://media.base44.com/images/public/6a0348a20dfacc3b4cecbfc0/444e7c52c_generated_image.png"
-              alt="Roll-off dumpster rental"
-              className="w-full h-full object-cover" />
+              src="/images/hero-dumpster.jpg"
+              alt="Roll-off dumpster delivered to a residential driveway"
+              className="w-full h-full object-cover object-center" />
             
             {/* Bottom vignette */}
             <div
