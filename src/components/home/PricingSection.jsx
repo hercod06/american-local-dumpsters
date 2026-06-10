@@ -24,10 +24,10 @@ const pricingData = [
 ];
 
 const mileageFees = [
-  { label: '0–15 miles', price: 'Included' },
-  { label: '16–25 miles', price: '+$49' },
-  { label: '26–35 miles', price: '+$99' },
-  { label: '36–50 miles', price: '+$179' },
+  { label: '0-15 miles', price: 'Included' },
+  { label: '16-25 miles', price: '+$49' },
+  { label: '26-35 miles', price: '+$99' },
+  { label: '36-50 miles', price: '+$179' },
 ];
 
 const sizes = [10, 13, 15, 18];
@@ -111,7 +111,7 @@ export default function PricingSection() {
                 </li>
                 <li className="flex items-center gap-2 font-body text-sm text-foreground">
                   <Check className="w-4 h-4 text-accent flex-shrink-0" />
-                  0–15 mile radius included
+                  0-15 mile radius included
                 </li>
               </ul>
               <Link to="/contact">

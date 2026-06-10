@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Truck, Clock, Shield } from 'lucide-react';
+import { ArrowRight, Truck, Clock, Shield, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const features = [
@@ -45,7 +45,7 @@ export default function JunkRemovalSection() {
             <h2 className="font-heading text-4xl sm:text-5xl text-foreground mt-3 tracking-tight mb-2">WE DO THE
 HEAVY LIFTING
             </h2>
-            <p className="font-body text-lg text-muted-foreground leading-relaxed mb-5">Don't want to deal with loading a dumpster yourself? Our full-service junk removal team handles everything — from old furniture to construction debris.
+            <p className="font-body text-lg text-muted-foreground leading-relaxed mb-5">Don't want to deal with loading a dumpster yourself? Our full-service junk removal team handles everything, from old furniture to construction debris.
 
             </p>
 
@@ -63,12 +63,23 @@ HEAVY LIFTING
               )}
             </div>
 
-            <Link to="/contact">
-              <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-body font-semibold rounded-sm px-8 py-6 text-base">
-                Schedule a Pickup
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/contact">
+                <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-body font-semibold rounded-sm px-8 py-6 text-base w-full sm:w-auto">
+                  Schedule a Pickup
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+              <a href="tel:+15138896060">
+                <Button variant="outline" className="font-body font-semibold rounded-sm px-8 py-6 text-base border-2 w-full sm:w-auto">
+                  <Phone className="w-5 h-5 mr-2" />
+                  Call (513) 889-6060
+                </Button>
+              </a>
+            </div>
+            <p className="font-body text-sm text-muted-foreground mt-4">
+              Call or contact us anytime for fast, full-service junk removal.
+            </p>
           </motion.div>
         </div>
       </div>

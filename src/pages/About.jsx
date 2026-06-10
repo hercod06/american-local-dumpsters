@@ -50,7 +50,7 @@ export default function About() {
       <section className="pt-32 pb-16 bg-background overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            {/* Left — text */}
+            {/* Left - text */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -62,12 +62,12 @@ export default function About() {
               <p className="font-body text-lg text-muted-foreground mt-6 leading-relaxed">
                 American Local Dumpsters is a locally owned dumpster rental and junk removal company
                 serving the Kentucky, Ohio, and Indiana tri-state area. We make clearing your space
-                simple, fast, and affordable — whether it's a single-room cleanout or a full
+                simple, fast, and affordable, whether it's a single-room cleanout or a full
                 construction project.
               </p>
             </motion.div>
 
-            {/* Right — company logo */}
+            {/* Right - company logo */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -127,13 +127,13 @@ export default function About() {
               <p>
                 We started American Local Dumpsters with a simple goal: make dumpster rental and
                 junk removal honest, easy, and dependable for our neighbors. Too many people had
-                dealt with confusing pricing, late deliveries, and poor service — we knew there was
+                dealt with confusing pricing, late deliveries, and poor service. We knew there was
                 a better way.
               </p>
               <p>
                 Today we provide roll-off dumpsters in a range of sizes, full-service junk removal,
                 construction debris hauling, and complete property cleanouts. Every job is handled
-                by a local team that cares about doing things right — from driveway-safe placement
+                by a local team that cares about doing things right, from driveway-safe placement
                 to recycling and donating whatever we can.
               </p>
               <p>

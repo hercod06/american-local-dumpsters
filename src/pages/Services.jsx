@@ -16,7 +16,7 @@ const services = [
   {
     icon: Trash2,
     title: 'Junk Removal',
-    desc: 'Full-service junk removal — our team loads everything for you. Perfect when you don\'t want to lift a finger.',
+    desc: 'Full-service junk removal where our team loads everything for you. Perfect for when you don\'t want to lift a finger.',
     features: ['We do all the lifting', 'Upfront transparent pricing', 'Furniture, appliances & more', 'Donation coordination'],
   },
   {

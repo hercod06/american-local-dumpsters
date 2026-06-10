@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Check, ArrowRight } from 'lucide-react';
 import DistanceCalculator from './DistanceCalculator';
 
-const dumpsters = [
+const defaultDumpsters = [
   {
     size: 10,
     image: 'https://media.base44.com/images/public/6a0348a20dfacc3b4cecbfc0/6d4caf735_generated_20888a5b.png',
@@ -46,12 +46,15 @@ const dumpsters = [
 
 const rentalDays = [1, 3, 7];
 
-export default function DumpsterSizesAndPricing() {
-  const [selectedSize, setSelectedSize] = useState(10);
+export default function DumpsterSizesAndPricing({
+  dumpsters = defaultDumpsters,
+  defaultSize = defaultDumpsters[0].size,
+}) {
+  const [selectedSize, setSelectedSize] = useState(defaultSize);
   const [selectedDays, setSelectedDays] = useState(3);
   const navigate = useNavigate();
 
-  const dumpster = dumpsters.find(d => d.size === selectedSize);
+  const dumpster = dumpsters.find(d => d.size === selectedSize) || dumpsters[0];
   const price = dumpster.prices[selectedDays];
 
   const handleBooking = () => {
@@ -65,7 +68,7 @@ export default function DumpsterSizesAndPricing() {
     <section className="py-12 bg-secondary/30 border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Header — compact */}
+        {/* Header - compact */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div>
             <span className="font-body text-xs font-bold tracking-[0.25em] text-accent uppercase">Dumpster Sizes & Pricing</span>
@@ -89,7 +92,7 @@ export default function DumpsterSizesAndPricing() {
           </div>
         </div>
 
-        {/* Main Content — 3 columns on desktop */}
+        {/* Main Content - 3 columns on desktop */}
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedSize}
@@ -99,7 +102,7 @@ export default function DumpsterSizesAndPricing() {
             transition={{ duration: 0.2 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch"
           >
-            {/* Col 1 — Image + specs */}
+            {/* Col 1 - Image + specs */}
             <div className="bg-card border-2 border-border overflow-hidden">
               <div className="relative h-36 overflow-hidden bg-secondary">
                 <img
@@ -137,7 +140,7 @@ export default function DumpsterSizesAndPricing() {
               </div>
             </div>
 
-            {/* Col 2 — Duration selector */}
+            {/* Col 2 - Duration selector */}
             <div className="bg-card border-2 border-border p-4 flex flex-col justify-between">
               <div>
                 <p className="font-body text-[10px] font-bold tracking-[0.2em] text-muted-foreground uppercase mb-3">Rental Duration</p>
@@ -170,10 +173,10 @@ export default function DumpsterSizesAndPricing() {
                 <p className="font-body text-[10px] font-bold tracking-[0.2em] text-muted-foreground uppercase mb-2">Distance Fees</p>
                 <div className="grid grid-cols-2 gap-1">
                   {[
-                    { label: '0–15 mi', price: 'Free' },
-                    { label: '16–25 mi', price: '+$49' },
-                    { label: '26–35 mi', price: '+$99' },
-                    { label: '36–50 mi', price: '+$179' },
+                    { label: '0-15 mi', price: 'Free' },
+                    { label: '16-25 mi', price: '+$49' },
+                    { label: '26-35 mi', price: '+$99' },
+                    { label: '36-50 mi', price: '+$179' },
                   ].map(m => (
                     <div key={m.label} className="flex items-center justify-between bg-secondary/50 px-2 py-1">
                       <span className="font-body text-[10px] text-muted-foreground">{m.label}</span>
@@ -184,7 +187,7 @@ export default function DumpsterSizesAndPricing() {
               </div>
             </div>
 
-            {/* Col 3 — Price + CTA */}
+            {/* Col 3 - Price + CTA */}
             <div className="flex flex-col gap-3">
               <div className="bg-primary text-primary-foreground p-4 flex-1">
                 <p className="font-body text-[10px] tracking-widest text-primary-foreground/60 uppercase mb-0.5">Your Total</p>
@@ -194,7 +197,7 @@ export default function DumpsterSizesAndPricing() {
                   {[
                     'Delivery & pickup included',
                     `${dumpster.weight} weight included`,
-                    '0–15 mile radius included',
+                    '0-15 mile radius included',
                   ].map(item => (
                     <div key={item} className="flex items-center gap-2">
                       <Check className="w-3 h-3 text-accent flex-shrink-0" />

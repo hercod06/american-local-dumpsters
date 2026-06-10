@@ -18,10 +18,10 @@ const RADIUS_MILES = 15;
 const RADIUS_METERS = RADIUS_MILES * 1609.34;
 
 const zones = [
-  { miles: 15, label: '0–15 miles', sublabel: 'Included in price', color: '#1e3a5f', fillOpacity: 0.12 },
-  { miles: 25, label: '16–25 miles', sublabel: '+$49', color: '#1e3a5f', fillOpacity: 0.07 },
-  { miles: 35, label: '26–35 miles', sublabel: '+$99', color: '#1e3a5f', fillOpacity: 0.05 },
-  { miles: 50, label: '36–50 miles', sublabel: '+$179', color: '#1e3a5f', fillOpacity: 0.03 },
+  { miles: 15, label: '0-15 miles', sublabel: 'Included in price', color: '#1e3a5f', fillOpacity: 0.12 },
+  { miles: 25, label: '16-25 miles', sublabel: '+$49', color: '#1e3a5f', fillOpacity: 0.07 },
+  { miles: 35, label: '26-35 miles', sublabel: '+$99', color: '#1e3a5f', fillOpacity: 0.05 },
+  { miles: 50, label: '36-50 miles', sublabel: '+$179', color: '#1e3a5f', fillOpacity: 0.03 },
 ];
 
 function SetView() {
@@ -51,7 +51,7 @@ export default function ServiceAreaSection() {
             TRI-STATE STRONG
           </h2>
           <p className="font-body text-base text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Based in Burlington, KY — serving the KY-OH-IN tri-state area up to 50 miles.
+            Based in Burlington, KY, serving the KY-OH-IN tri-state area up to 50 miles.
           </p>
         </motion.div>
 
@@ -74,7 +74,7 @@ export default function ServiceAreaSection() {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            {/* Service radius circles — largest first so smaller ones render on top */}
+            {/* Service radius circles - largest first so smaller ones render on top */}
             {[...zones].reverse().map(zone => (
               <Circle
                 key={zone.miles}

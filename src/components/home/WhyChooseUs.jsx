@@ -7,7 +7,7 @@ const features = [
   {
     icon: Timer,
     title: 'On-Time, Every Time',
-    desc: 'Deliveries and pickups happen in the window we promise. We respect your schedule — no excuses.',
+    desc: 'Deliveries and pickups happen in the window we promise. We respect your schedule, no excuses.',
   },
   {
     icon: DollarSign,
@@ -52,7 +52,7 @@ export default function WhyChooseUs() {
               HOMEOWNERS
             </h2>
             <p className="font-body text-base text-muted-foreground mt-6 mb-8 max-w-md leading-relaxed">
-              We connect you directly with our local team — people who know the tri-state area and care about doing the job right.
+              We connect you directly with our local team, people who know the tri-state area and care about doing the job right.
             </p>
 
             <Link to="/contact" className="inline-flex items-center gap-2 font-body font-bold text-sm text-accent hover:text-accent/80 transition-colors uppercase tracking-wider">

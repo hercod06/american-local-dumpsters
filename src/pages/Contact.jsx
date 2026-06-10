@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle, Loader2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
 
 const contactInfo = [
@@ -39,34 +39,94 @@ export default function Contact() {
 
   const handleChange = (field, value) => setForm(prev => ({ ...prev, [field]: value }));
 
-  const handleSubmit = (e) => {
+  // ── Delivery address autocomplete (free OpenStreetMap Nominatim) ──
+  const [addrSuggestions, setAddrSuggestions] = useState([]);
+  const [showAddrSuggestions, setShowAddrSuggestions] = useState(false);
+  const [loadingAddr, setLoadingAddr] = useState(false);
+  const addrDebounceRef = useRef(null);
+  const addrWrapperRef = useRef(null);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (addrWrapperRef.current && !addrWrapperRef.current.contains(e.target)) {
+        setShowAddrSuggestions(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  const fetchAddrSuggestions = async (query) => {
+    if (query.length < 4) {
+      setAddrSuggestions([]);
+      return;
+    }
+    setLoadingAddr(true);
+    try {
+      const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&addressdetails=1&limit=5&countrycodes=us`;
+      const res = await fetch(url, { headers: { 'Accept-Language': 'en' } });
+      const data = await res.json();
+      setAddrSuggestions(data.map((item) => item.display_name));
+      setShowAddrSuggestions(true);
+    } catch (_) {
+      setAddrSuggestions([]);
+    }
+    setLoadingAddr(false);
+  };
+
+  const handleAddressChange = (value) => {
+    handleChange('address', value);
+    clearTimeout(addrDebounceRef.current);
+    addrDebounceRef.current = setTimeout(() => fetchAddrSuggestions(value), 300);
+  };
+
+  const selectAddress = (s) => {
+    handleChange('address', s);
+    setAddrSuggestions([]);
+    setShowAddrSuggestions(false);
+  };
+
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.phone) {
       toast.error('Please fill in your name and phone number.');
       return;
     }
 
-    // Send the request by opening the user's email client, pre-filled with
-    // all the form details (no backend required).
-    const subject = `Quote Request - ${form.name}`;
-    const lines = [
-      `Name: ${form.name}`,
-      `Phone: ${form.phone}`,
-      `Email: ${form.email || '-'}`,
-      `Service: ${form.service || '-'}`,
-      `Dumpster Size: ${form.size || '-'}`,
-      `Rental Duration: ${form.days || '-'}`,
-      `State: ${form.state || '-'}`,
-      `Delivery Address: ${form.address || '-'}`,
-      '',
-      'Project Details:',
-      form.message || '-',
-    ];
-    const mailto = `mailto:AmericanLocalDumpsters@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
-    window.location.href = mailto;
+    setSending(true);
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: '4f87ea8c-5868-45d7-80cf-3113c118fc6a',
+          subject: `New Quote Request from ${form.name}`,
+          from_name: 'American Local Dumpsters Website',
+          name: form.name,
+          phone: form.phone,
+          email: form.email || 'Not provided',
+          service: form.service || 'Not specified',
+          dumpster_size: form.size || 'Not specified',
+          rental_duration: form.days || 'Not specified',
+          state: form.state || 'Not specified',
+          delivery_address: form.address || 'Not specified',
+          project_details: form.message || 'None',
+        }),
+      });
+      const data = await res.json();
 
-    setSubmitted(true);
-    toast.success('Opening your email app to send the request...');
+      if (data.success) {
+        setSubmitted(true);
+        toast.success("Quote request sent! We'll contact you shortly.");
+      } else {
+        toast.error('Something went wrong. Please call us at (513) 889-6060.');
+      }
+    } catch (_) {
+      toast.error('Network error. Please try again or call (513) 889-6060.');
+    }
+    setSending(false);
   };
 
   if (submitted) {
@@ -82,7 +142,7 @@ export default function Contact() {
               Thank you, {form.name}! We've received your quote request.
             </p>
             <p className="font-body text-base text-muted-foreground">
-              A team member will reach out within 1 business hour.
+              A team member will reach out within 3 business hour.
             </p>
           </motion.div>
         </div>
@@ -105,7 +165,7 @@ export default function Contact() {
               LET'S CLEAR<br />YOUR <span className="text-accent">SPACE</span>
             </h1>
             <p className="font-body text-base text-muted-foreground leading-relaxed mb-10">
-              Fill out the form to get a free, no-obligation quote — or give us a call for immediate assistance.
+              Fill out the form to get a free, no-obligation quote, or give us a call for immediate assistance.
             </p>
 
             <div className="space-y-6">
@@ -243,12 +303,43 @@ export default function Contact() {
 
               <div className="mb-4">
                 <Label className="font-body text-sm font-medium">Delivery Address</Label>
-                <Input
-                  value={form.address}
-                  onChange={(e) => handleChange('address', e.target.value)}
-                  placeholder="123 Main St, Cincinnati, OH"
-                  className="mt-1.5 rounded-sm font-body"
-                />
+                <div className="relative mt-1.5" ref={addrWrapperRef}>
+                  <Input
+                    value={form.address}
+                    onChange={(e) => handleAddressChange(e.target.value)}
+                    onFocus={() => addrSuggestions.length > 0 && setShowAddrSuggestions(true)}
+                    onKeyDown={(e) => { if (e.key === 'Escape') setShowAddrSuggestions(false); }}
+                    placeholder="Start typing your address..."
+                    className="rounded-sm font-body pr-9"
+                    autoComplete="off"
+                  />
+                  {loadingAddr && (
+                    <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground animate-spin pointer-events-none" />
+                  )}
+
+                  <AnimatePresence>
+                    {showAddrSuggestions && addrSuggestions.length > 0 && (
+                      <motion.ul
+                        initial={{ opacity: 0, y: -4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -4 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute left-0 right-0 top-full mt-1 bg-card border-2 border-border z-50 shadow-lg max-h-56 overflow-y-auto"
+                      >
+                        {addrSuggestions.map((s, i) => (
+                          <li
+                            key={i}
+                            onMouseDown={() => selectAddress(s)}
+                            className="flex items-start gap-2 px-4 py-2.5 cursor-pointer hover:bg-secondary transition-colors border-b border-border last:border-b-0"
+                          >
+                            <MapPin className="w-3.5 h-3.5 text-accent flex-shrink-0 mt-0.5" />
+                            <span className="font-body text-xs text-foreground leading-snug">{s}</span>
+                          </li>
+                        ))}
+                      </motion.ul>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
 
               <div className="mb-6">
@@ -261,9 +352,18 @@ export default function Contact() {
                 />
               </div>
 
-              <Button type="submit" className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-body font-semibold rounded-sm py-6 text-base">
-                <Send className="w-5 h-5 mr-2" />
-                Submit Quote Request
+              <Button type="submit" disabled={sending} className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-body font-semibold rounded-sm py-6 text-base disabled:opacity-70">
+                {sending ? (
+                  <>
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5 mr-2" />
+                    Submit Quote Request
+                  </>
+                )}
               </Button>
 
               <p className="font-body text-xs text-muted-foreground text-center mt-4">

@@ -7,7 +7,7 @@ const dumpsters = [
     size: '10',
     image: 'https://media.base44.com/images/public/6a0348a20dfacc3b4cecbfc0/6d4caf735_generated_20888a5b.png',
     loads: '3',
-    dimensions: '12\' L x 8\' W × 3.5\' H',
+    dimensions: '14\' L × 8\' W × 3.5\' H',
     idealFor: ['Small bathroom remodel', 'Garage cleanout', 'Deck removal', 'Minor landscaping'],
   },
   {
@@ -21,14 +21,14 @@ const dumpsters = [
     size: '15',
     image: 'https://media.base44.com/images/public/6a0348a20dfacc3b4cecbfc0/995bfcfa3_generated_d2f93796.png',
     loads: '5',
-    dimensions: '16\' L × 8\' W × 4.5\' H',
+    dimensions: '14\' L × 8\' W × 4.5\' H',
     idealFor: ['Kitchen remodel', 'Flooring removal', 'Medium home cleanout', 'Roofing'],
   },
   {
     size: '18',
     image: 'https://media.base44.com/images/public/6a0348a20dfacc3b4cecbfc0/9bcb1153b_generated_11f6a5cd.png',
     loads: '6',
-    dimensions: '18\' L × 8\' W × 5\' H',
+    dimensions: '14\' L × 8\' W × 5\' H',
     idealFor: ['Large renovation', 'Whole home cleanout', 'New construction', 'Commercial project'],
   },
 ];
@@ -52,7 +52,7 @@ export default function DumpsterGallery() {
             FIND YOUR FIT
           </h2>
           <p className="font-body text-base text-muted-foreground mt-4 max-w-2xl mx-auto">
-            From a small garage cleanout to a major demolition project — we have the right container for every job.
+            From a small garage cleanout to a major demolition project, we have the right container for every job.
           </p>
         </motion.div>
 

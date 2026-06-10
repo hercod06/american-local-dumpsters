@@ -10,10 +10,10 @@ const ORIGIN = '2716 Sunchase Blvd, Burlington, KY 41005';
 const ORIGIN_COORD = { lat: 39.0287, lon: -84.7244 };
 
 const DISTANCE_TIERS = [
-  { max: 15, label: '0–15 miles', fee: 0, feeLabel: 'Included' },
-  { max: 25, label: '16–25 miles', fee: 49, feeLabel: '+$49' },
-  { max: 35, label: '26–35 miles', fee: 99, feeLabel: '+$99' },
-  { max: 50, label: '36–50 miles', fee: 179, feeLabel: '+$179' },
+  { max: 15, label: '0-15 miles', fee: 0, feeLabel: 'Included' },
+  { max: 25, label: '16-25 miles', fee: 49, feeLabel: '+$49' },
+  { max: 35, label: '26-35 miles', fee: 99, feeLabel: '+$99' },
+  { max: 50, label: '36-50 miles', fee: 179, feeLabel: '+$179' },
 ];
 
 function getTier(miles) {
@@ -122,7 +122,7 @@ export default function DistanceCalculator() {
       const from = ORIGIN_COORD;
 
       // Destination: reuse coords from the selected suggestion if available,
-      // otherwise geocode the typed text (sequential — avoids rate limiting).
+      // otherwise geocode the typed text (sequential - avoids rate limiting).
       let to = destCoordRef.current;
       if (!to) {
         to = await geocode(address);
@@ -146,7 +146,7 @@ export default function DistanceCalculator() {
           miles = j.routes[0].distance / 1609.344;
         }
       } catch (_) {
-        // routing service unavailable — fall back below
+        // routing service unavailable - fall back below
       }
 
       if (miles == null) {
@@ -252,7 +252,7 @@ export default function DistanceCalculator() {
                 <CheckCircle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5 sm:mt-0" />
                 <div className="flex-1">
                   <p className="font-body text-sm text-foreground">
-                    Your address is approximately <span className="font-bold">{result.miles} miles</span> from our facility —
+                    Your address is approximately <span className="font-bold">{result.miles} miles</span> from our facility,
                     in the <span className="font-bold">{result.tier.label}</span> zone.
                   </p>
                 </div>
@@ -267,7 +267,7 @@ export default function DistanceCalculator() {
               <div className="flex items-start gap-2 bg-destructive/10 border border-destructive/30 p-4">
                 <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
                 <p className="font-body text-sm text-foreground">
-                  Your address is approximately <span className="font-bold">{result.miles} miles</span> away — outside our standard 50-mile service area.
+                  Your address is approximately <span className="font-bold">{result.miles} miles</span> away, outside our standard 50-mile service area.
                   Please <Link to="/contact" className="text-accent underline">contact us</Link> for a custom quote.
                 </p>
               </div>

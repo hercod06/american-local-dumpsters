@@ -18,7 +18,7 @@ const sizes = ['10 YD', '13 YD', '15 YD', '18 YD'];
 const durations = ['1 Day', '3 Days', '7 Days'];
 
 const stats = [
-  { num: 'IN', label: 'Indianapolis' },
+  { num: 'IN', label: 'Southeast Indiana' },
   { num: 'KY', label: 'Burlington' },
   { num: 'OH', label: 'Cincinnati' },
 ];
@@ -226,7 +226,7 @@ export default function HeroSection() {
                   {selectedSize} · {selectedDuration.toLowerCase()}
                 </p>
                 <p className="font-body text-[10px] text-primary-foreground/50 mt-1">
-                  Delivery &amp; pickup included · 0–15 mi radius
+                  Delivery &amp; pickup included · 0-15 mi radius
                 </p>
               </motion.div>
             ) : (
