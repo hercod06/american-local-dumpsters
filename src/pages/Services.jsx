@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Truck, Trash2, HardHat, Recycle, CheckCircle } from 'lucide-react';
+import { ArrowRight, Truck, Trash2, HardHat, CheckCircle, Hammer } from 'lucide-react';
 import { motion } from 'framer-motion';
 import DumpsterSizesAndPricing from '../components/home/DumpsterSizesAndPricing';
 import CTABanner from '../components/home/CTABanner';
@@ -10,26 +10,26 @@ const services = [
   {
     icon: Truck,
     title: 'Dumpster Rental',
-    desc: 'Roll-off dumpsters in 10, 20, 30, and 40-yard sizes. Delivered on your schedule, picked up when you\'re done.',
-    features: ['Flexible rental periods', 'Same-day delivery available', 'Weight included in price', 'Driveway-safe placement'],
+    desc: 'Roll-off dumpsters in 10, 13, 15, and 18 yard sizes. Delivered on your schedule, picked up when you\'re done.',
+    features: ['Flexible rental periods', 'Same day delivery available', 'Weight included in price', 'Driveway safe placement'],
   },
   {
     icon: Trash2,
     title: 'Junk Removal',
-    desc: 'Full-service junk removal where our team loads everything for you. Perfect for when you don\'t want to lift a finger.',
+    desc: 'Full service junk removal where our team loads everything for you. Perfect for when you don\'t want to lift a finger.',
     features: ['We do all the lifting', 'Upfront transparent pricing', 'Furniture, appliances & more', 'Donation coordination'],
   },
   {
     icon: HardHat,
     title: 'Construction Debris',
     desc: 'Specialized containers for construction and demolition waste. Compliant disposal of heavy materials.',
-    features: ['Concrete & asphalt OK', 'Roofing tear-off ready', 'Permits assistance', 'Heavy load capacity'],
+    features: ['Concrete & asphalt OK', 'Roofing tear off ready', 'Permits assistance', 'Heavy load capacity'],
   },
   {
-    icon: Recycle,
-    title: 'Cleanout Services',
-    desc: 'Estate cleanouts, foreclosure cleanups, and hoarding situations handled with care and discretion.',
-    features: ['Whole-home cleanouts', 'Estate & foreclosure', 'Respectful & discreet', 'Sort, recycle & donate'],
+    icon: Hammer,
+    title: 'Commercial & Residential Demolition',
+    desc: 'Full-service demolition for homes and businesses. From interior tear outs to full structure removal, we handle it safely and haul it away.',
+    features: ['Commercial & residential', 'Interior & full demolition', 'Garages, sheds & decks', 'Debris haul away included'],
   },
 ];
 
@@ -48,7 +48,7 @@ export default function Services() {
               COMPLETE WASTE<br />SOLUTIONS
             </h1>
             <p className="font-body text-lg text-muted-foreground mt-6 leading-relaxed">
-              From a single dumpster rental to a full-property cleanout, American Local Dumpsters provides comprehensive waste management across the tri-state area.
+              From a single dumpster rental to a full property cleanout, American Local Dumpsters provides comprehensive waste management across the tri-state area.
             </p>
           </motion.div>
         </div>

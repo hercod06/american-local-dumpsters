@@ -14,7 +14,7 @@ const values = [
   {
     icon: Clock,
     title: 'On-Time, Every Time',
-    desc: 'We respect your schedule. Same-day delivery is available and we show up when we say we will.',
+    desc: 'We respect your schedule. Same day delivery is available and we show up when we say we will.',
   },
   {
     icon: ThumbsUp,
@@ -34,7 +34,7 @@ const values = [
   {
     icon: Users,
     title: 'Locally Owned',
-    desc: 'A local, family-run business that treats your property and project like our own.',
+    desc: 'A local, family run business that treats your property and project like our own.',
   },
   {
     icon: MapPin,
@@ -62,7 +62,7 @@ export default function About() {
               <p className="font-body text-lg text-muted-foreground mt-6 leading-relaxed">
                 American Local Dumpsters is a locally owned dumpster rental and junk removal company
                 serving the Kentucky, Ohio, and Indiana tri-state area. We make clearing your space
-                simple, fast, and affordable, whether it's a single-room cleanout or a full
+                simple, fast, and affordable, whether it's a single room cleanout or a full
                 construction project.
               </p>
             </motion.div>
@@ -127,11 +127,10 @@ export default function About() {
               <p>
                 We started American Local Dumpsters with a simple goal: make dumpster rental and
                 junk removal honest, easy, and dependable for our neighbors. Too many people had
-                dealt with confusing pricing, late deliveries, and poor service. We knew there was
-                a better way.
+                dealt with confusing pricing, late deliveries, and poor service. We knew there was a better way.
               </p>
               <p>
-                Today we provide roll-off dumpsters in a range of sizes, full-service junk removal,
+                Today we provide roll-off dumpsters in a range of sizes, full service junk removal,
                 construction debris hauling, and complete property cleanouts. Every job is handled
                 by a local team that cares about doing things right, from driveway-safe placement
                 to recycling and donating whatever we can.

@@ -165,7 +165,7 @@ export default function Contact() {
               LET'S CLEAR<br />YOUR <span className="text-accent">SPACE</span>
             </h1>
             <p className="font-body text-base text-muted-foreground leading-relaxed mb-10">
-              Fill out the form to get a free, no-obligation quote, or give us a call for immediate assistance.
+              Fill out the form to get a free, no obligation quote, or give us a call for immediate assistance.
             </p>
 
             <div className="space-y-6">
@@ -250,7 +250,7 @@ export default function Contact() {
                       <SelectItem value="dumpster_rental">Dumpster Rental</SelectItem>
                       <SelectItem value="junk_removal">Junk Removal</SelectItem>
                       <SelectItem value="construction">Construction Debris</SelectItem>
-                      <SelectItem value="cleanout">Cleanout Services</SelectItem>
+                      <SelectItem value="demolition">Demolition (Commercial & Residential)</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

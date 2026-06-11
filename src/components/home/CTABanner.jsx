@@ -20,7 +20,7 @@ export default function CTABanner() {
             READY TO CLEAR<br />YOUR SPACE?
           </h2>
           <p className="font-body text-lg text-accent-foreground/80 mb-12 max-w-xl mx-auto">
-            Get a free, no-obligation quote in minutes. Same-day delivery available across the tri-state area.
+            Get a free, no obligation quote in minutes. Same day delivery available across the tri-state area.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to="/contact">

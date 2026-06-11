@@ -6,8 +6,8 @@ import { motion } from 'framer-motion';
 
 const features = [
 { icon: Truck, title: 'Full-Service Removal', desc: 'Our crew handles all the heavy lifting. You point, we load.' },
-{ icon: Clock, title: 'Same-Day Availability', desc: 'Need it gone today? We offer same-day junk removal across the tri-state.' },
-{ icon: Shield, title: 'Responsible Disposal', desc: 'We recycle and donate whenever possible. Eco-friendly waste management.' }];
+{ icon: Clock, title: 'Same-Day Availability', desc: 'Need it gone today? We offer same day junk removal across the tri-state.' },
+{ icon: Shield, title: 'Responsible Disposal', desc: 'We recycle and donate whenever possible. Eco friendly waste management.' }];
 
 
 export default function JunkRemovalSection() {
@@ -45,7 +45,7 @@ export default function JunkRemovalSection() {
             <h2 className="font-heading text-4xl sm:text-5xl text-foreground mt-3 tracking-tight mb-2">WE DO THE
 HEAVY LIFTING
             </h2>
-            <p className="font-body text-lg text-muted-foreground leading-relaxed mb-5">Don't want to deal with loading a dumpster yourself? Our full-service junk removal team handles everything, from old furniture to construction debris.
+            <p className="font-body text-lg text-muted-foreground leading-relaxed mb-5">Don't want to deal with loading a dumpster yourself? Our full service junk removal team handles everything, from old furniture to construction debris.
 
             </p>
 
@@ -78,7 +78,7 @@ HEAVY LIFTING
               </a>
             </div>
             <p className="font-body text-sm text-muted-foreground mt-4">
-              Call or contact us anytime for fast, full-service junk removal.
+              Call or contact us anytime for fast, full service junk removal.
             </p>
           </motion.div>
         </div>
